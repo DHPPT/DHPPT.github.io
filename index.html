@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>CS114 Project 1: WebGL</title>
+<title>WebGL</title>
 <meta charset="utf-8">
 <link href="css/proj1.css" rel="stylesheet">
 <link href="css/spectrum.css" rel="stylesheet">
@@ -77,6 +77,7 @@
 <!-- Fragment shader: white -->
 <script id="shader-fs0" type="x-shader/x-fragment">
     precision mediump float;
+    uniform vec3 uLightPos;             // Light position in camera space
 
     varying vec3 vPosition;             // Vertex position (camera space)
     varying vec3 vNormal;               // Vertex normal (camera space)
@@ -86,7 +87,8 @@
         vec4 zero = vec4(vPosition + vNormal - vPosition - vNormal, 0.0);
 
         gl_FragColor = zero + vec4(1.0, 1.0, 1.0, 1.0);
-        float t = dot(vec3(0.5,0.5,0),vNormal);
+        vec3 lightdir = normalize(vec3(0.5,0.5,0));
+        float t = dot(lightdir,vNormal);
         gl_FragColor = vec4(t, t, t, 1.0) ;
  
     }
@@ -236,7 +238,7 @@
 
 <!-- HTML contents -->
 <body>
-    <h1>CS114 Project 1: WebGL</h1>
+    <h1>WebGL</h1>
 
     <div class="droplist">
         <span>
