@@ -1,0 +1,7 @@
+# Site settings
+title: life Blog
+description: 生活不止眼前的苟且，还有诗和远方的田野
+keywords: 旅行, 生活纪律, 趣事
+author: DH Wong
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "dihong.wang" # the base hostname & protocol for your site
