@@ -1,0 +1,91 @@
+<!doctype html><html><head><meta charset=UTF-8><title>WebPPT - By DH</title><link rel=stylesheet href=https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=https://cdn.staticfile.org/prism/1.15.0/themes/prism.min.css><link rel=stylesheet href=https://cdn.staticfile.org/KaTeX/0.10.0-rc.1/katex.min.css><link href=./css/chunk-vendors.4e4765ff.css rel=stylesheet></head><body><div><article id=webslides><section slide class="slide bg-black-blue aligncenter" image="https://source.unsplash.com/Zq_K89I9E-8/ .dark"><span class="background dark" style="background-image:url('https://source.unsplash.com/Zq_K89I9E-8/')"></span><div class=wrap wrap=true><p class="text-subtitle animated fadeInDown delay-800">mermaid</p><h1 class="text-landing text-shadow">nodeppt</h1><p class=text-intro>WebPPT</p><p><a href=javascript:void(0) class="button ghost"><i class="fa fa-github"></i> Github</a></p></div></section><section slide class="slide aligncenter"><div class=wrap wrap=true><h2>mermaid</h2></div></section><section slide class=slide :class=size-60><div class="wrap size-60" wrap=true><h2 class=aligncenter>Basic sequence diagram</h2><div class=embed><pre class="lang-mermaid no-style">sequenceDiagram
+    Alice ->> Bob: Hello Bob, how are you?
+    Bob-->>John: How about you John?
+    Bob--x Alice: I am good thanks!
+    Bob-x John: I am good thanks!
+    Note right of John: Bob thinks a long<br>long time, so long<br>that the text does<br>not fit on a row.
+
+    Bob-->Alice: Checking with John...
+    Alice->John: Yes... John, how are you?
+</pre></div></div></section><section slide class=slide :class=size-60><div class="wrap size-60" wrap=true><h2 class=aligncenter>Mermaid can render state diagrams.</h2><div class=embed><pre class="lang-mermaid no-style">stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+</pre></div></div></section><section slide class=slide :class=size-60><div class="wrap size-60" wrap=true><h2 class=aligncenter>Message to self in loop</h2><div class=embed><pre class="lang-mermaid no-style">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts<br>prevail...
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+</pre></div></div></section><section slide class=slide :class=size-80><div class="wrap size-80" wrap=true><h2 class=aligncenter>Gantt</h2><div class=embed><pre class="lang-mermaid no-style">gantt
+       dateFormat  YYYY-MM-DD
+       title Adding GANTT diagram functionality to mermaid
+
+       section A section
+       Completed task            :done,    des1, 2014-01-06,2014-01-08
+       Active task               :active,  des2, 2014-01-09, 3d
+       Future task               :         des3, after des2, 5d
+       Future task2              :         des4, after des3, 5d
+
+       section Critical tasks
+       Completed task in the critical line :crit, done, 2014-01-06,24h
+       Implement parser and jison          :crit, done, after des1, 2d
+       Create tests for parser             :crit, active, 3d
+       Future task in critical line        :crit, 5d
+       Create tests for renderer           :2d
+       Add to mermaid                      :1d
+
+       section Documentation
+       Describe gantt syntax               :active, a1, after des1, 3d
+       Add gantt diagram to demo page      :after a1  , 20h
+       Add another diagram to demo page    :doc1, after a1  , 48h
+
+       section Last section
+       Describe gantt syntax               :after doc1, 3d
+       Add gantt diagram to demo page      :20h
+       Add another diagram to demo page    :48h
+
+</pre></div></div></section><section slide class=slide :class=size-60><div class="wrap size-60" wrap=true><h2 class=aligncenter>Flowchart support for fontawesome</h2><div class=embed><pre class="lang-mermaid no-style">graph TD
+    B["fa:fa-twitter for peace"]
+    B-->C[fa:fa-ban forbidden]
+    B-->D(fa:fa-spinner);
+    B-->E(A fa:fa-camera-retro perhaps?);
+</pre></div></div></section><section slide class="slide bg-primary" :class="size-60 frame"><div class="wrap size-60 frame" wrap=true><h2 class="text-serif aligncenter">View More Demos?</h2><p class=text-symbols>* * *</p><nav class=aligncenter><ul><li><a href=./layout.html><i class="fa fa-th-large"></i> Layout</a></li><li><a href=./background.html><i class="fa fa-tv"></i> Background</a></li><li><a href=./animation.html><i class="fa fa-magic"></i> Animation</a></li><li><a href=./component.html><i class="fa fa-cube"></i> Component</a></li><li><a href=./index.html><i class="fa fa-css3"></i> Classes</a></li></ul></nav></div></section><section slide class="slide aligncenter"><div class=wrap wrap=true></div></section></article></div><script src=https://cdn.staticfile.org/mermaid/8.5.2/mermaid.min.js></script><script>mermaid.startOnLoad = false;</script><script>window.pluginsOptions = {"mermaid":{"theme":"forest"}}
+
+
+
+    window.webslidesOptions = {}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    let isPrintMode = false;
+    if(~location.search.indexOf('print-pdf')){
+        isPrintMode = true;
+        WebSlides.registerPlugin('scroll', function(){});
+    }
+    const wsOptions = {
+        loop: false
+    };
+    if(window.webslidesOptions){
+        for (let i in webslidesOptions){
+            if(webslidesOptions.hasOwnProperty(i)){
+                wsOptions[i] = webslidesOptions[i];
+            }
+        }
+    }
+    const ws = new WebSlides(wsOptions)
+
+    window.wsInstance = ws;
+    if(isPrintMode){
+        ws.slides.forEach(s=>s.show())
+    }
+}, false)</script><script src=./js/chunk-vendors.js></script><script src=./js/mermaid.js></script></body></html>
