@@ -1,114 +1,54 @@
----
-layout: home
-main-title: "BiBi&#8226;BaBi&#8226;Boo"
-subtitle: "Photo Journal"
-description: "Photography and more"
-images:
- - image_path: /img/slider/home01.jpg
-   gallery-folder: /img/slider/
- - image_path: /img/slider/home02.jpg
-   gallery-folder: /img/slider/
- - image_path: /img/slider/home03.jpg
-   gallery-folder: /img/slider/
----
+<!doctype html><html><head><meta charset=UTF-8><title>WebPPT - By DH</title><link rel=stylesheet href=https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=https://cdn.staticfile.org/prism/1.15.0/themes/prism.min.css><link rel=stylesheet href=https://cdn.staticfile.org/KaTeX/0.10.0-rc.1/katex.min.css><link rel=stylesheet href=https://cdn.staticfile.org/KaTeX/0.5.1/katex.min.css><link href=./css/chunk-vendors.4e4765ff.css rel=stylesheet></head><body><div><article id=webslides><section slide class="slide bg-black-blue aligncenter" image=https://cg0.cgsociety.org/uploads/images/medium/martin-lee-concept-art-looking--1-7b815f22-veg7.jpg><span class=background style="background-image:url('https://cg0.cgsociety.org/uploads/images/medium/martin-lee-concept-art-looking--1-7b815f22-veg7.jpg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">Home page</h1><p class="text-intro animated fadeInUp delay-500">You can get more information about me.</p><p><a href=https://wangdihong.cn class="button ghost animated flipInX delay-1200" target=_blank>ReadMore</a></p></div></section><section slide class="slide bg-black-blue aligncenter" image=https://cg4.cgsociety.org/uploads/images/medium/seventeenth-call-it-a-day-1-cddf2cf8-dy41.jpg><span class=background style="background-image:url('https://cg4.cgsociety.org/uploads/images/medium/seventeenth-call-it-a-day-1-cddf2cf8-dy41.jpg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">Vlog</h1><p class="text-intro animated fadeInUp delay-500">The significance of music and travel</p><p><a href=https://wangdihong.gitee.io/video/ class="button ghost animated flipInX delay-1200" target=_blank>ReadMore</a></p></div></section><section slide class="slide bg-black-blue aligncenter" image=https://cg4.cgsociety.org/uploads/images/medium/caoruming-leave-night-1-5b931988-mj32.jpg><span class=background style="background-image:url('https://cg4.cgsociety.org/uploads/images/medium/caoruming-leave-night-1-5b931988-mj32.jpg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">Travel blog</h1><p class="text-intro animated fadeInUp delay-500">Keeping a positive and loving attitude towards life, I will record every trip I make.</p><p><a href=%22%22 class="button ghost animated flipInX delay-1200">ReadMore</a></p></div></section><section slide class=slide :class=size-80><div class="wrap size-80" wrap=true><div class="vertical-align grid"><div class=column><h3><strong>About Me</strong></h3><p>yeh, that`s it</p></div><div class=column><pre class=language-html><code class=language-html>    while(alive)
+    {
+        if(time>7)
+        {
+            awake()
+        }
+            
+        if(isawake)
+        {   
+            eat()
 
+            coding()
 
-<html class="no-js" lang="en">
-<head>
-	<meta content="charset=utf-8">
+            Play(game,music,ride)
 
-<!-- CSS -->
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="{{ site.baseurl }}/css/galleries.css" media="screen" />
-<link rel="stylesheet" href="{{ site.baseurl }}/css/WYSIWYG.css" media="screen" />
+            try()
+            {
+                recoding()
+            }
 
+            sleep()
 
-
-	<!-- Modernizr -->
-  <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+        }
+    }
+</code></pre></div></div><hr></div></section></article></div><script src=https://cdn.staticfile.org/echarts/4.8.0/echarts.min.js></script><script src=https://cdn.staticfile.org/mermaid/8.5.2/mermaid.min.js></script><script>mermaid.startOnLoad = false;</script><script src=https://echarts.cdn.apache.org/zh/asset/theme/infographic.js></script><script>window.pluginsOptions = {"echarts":{"theme":"infographic"},"mermaid":{"theme":"forest"}}
 
 
 
-  
-
-</head>
-
-<body class="fullscreen">
-
-<!-- MAIN CONTENT SECTION  _____________________________________________-->
-	<section id="content" role="main">
-		<div class="wrapper">
-
-			<!-- WYSIWYG -->
-
-		<div class="position-absolute">
-				<h2 class="big no-margin"><strong>{{ page.main-title }}</strong></h2>
-				<h2>{{ page.subtitle }}</h2> 
-                     <div class="entry-summary">
-							<p>{{ page.description }}</p>
-						</div><br />
-			</div>
-			
-			<div class="gallery fullscreen-gallery kenburns-gallery">
-
-				<canvas id="kenburns"></canvas>
-				
-{% for image in page.images %}  	
-
-				<figure class="gallery-item">
-					<header class='gallery-icon'>
-
-<a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
-<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
-	
-				</header>	
-				</figure>
-
-{% endfor %}
-
-				</div>
-			<!-- END WYSIWYG -->
-			
-	
-		</div><!-- END .wrapper -->
-		
-	</section>
+    window.webslidesOptions = {}
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    let isPrintMode = false;
+    if(~location.search.indexOf('print-pdf')){
+        isPrintMode = true;
+        WebSlides.registerPlugin('scroll', function(){});
+    }
+    const wsOptions = {
+        loop: false
+    };
+    if(window.webslidesOptions){
+        for (let i in webslidesOptions){
+            if(webslidesOptions.hasOwnProperty(i)){
+                wsOptions[i] = webslidesOptions[i];
+            }
+        }
+    }
+    const ws = new WebSlides(wsOptions)
 
-    <div id="footer" role="contentinfo">
-		<ul class="soc-icons">
-	  
-		  
-		  <li>
-			<a href="PPT/index.html"  target="_blank" title="PPT">
-			<i class="fa fa-eye"></i></span></a> 
-		  </li>
-			    	 
-					
-		</ul>	
-	  </div>
-
-  
-<!-- jQuery -->
-  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <script src="{{ site.baseurl }}/js/retina.min.js"></script> 
-
-<!-- include mousewheel plugins -->
-<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
-<!-- include gallery cycle plugin -->
-<script src="{{ site.baseurl }}/js/jquery.cycle.min.js"></script>
-<!-- include kenburns plugins -->
-<script src="{{ site.baseurl }}/js/kenburns.min.js"></script>
-<!-- include svg line drawing plugin -->
-<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
-<!-- include custom script -->
-<script src="{{ site.baseurl }}/js/scripts.js"></script>
-
-
-       </body>
-    </html>
-
+    window.wsInstance = ws;
+    if(isPrintMode){
+        ws.slides.forEach(s=>s.show())
+    }
+}, false)</script><script src=./js/chunk-vendors.js></script><script src=./js/index.js></script></body></html>
