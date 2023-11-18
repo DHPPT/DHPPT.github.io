@@ -1,0 +1,59 @@
+<!doctype html><html><head><meta charset=UTF-8><title>DH Wong</title><link rel=stylesheet href=https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=https://cdn.staticfile.org/prism/1.15.0/themes/prism.min.css><link rel=stylesheet href=https://cdn.staticfile.org/KaTeX/0.10.0-rc.1/katex.min.css><link rel=stylesheet href=https://cdn.staticfile.org/KaTeX/0.5.1/katex.min.css><link href=./css/chunk-vendors.4e4765ff.css rel=stylesheet></head><body><div><article id=webslides><section slide class="slide bg-black-blue aligncenter" image=https://cg0.cgsociety.org/uploads/images/medium/martin-lee-concept-art-looking--1-7b815f22-veg7.jpg><span class=background style="background-image:url('https://cg0.cgsociety.org/uploads/images/medium/martin-lee-concept-art-looking--1-7b815f22-veg7.jpg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">Home page</h1><p class="text-intro animated fadeInUp delay-500">滑动看下一页吧</p><p><a href="" class="button ghost animated flipInX delay-1200" target=_blank>ReadMore</a></p></div></section><section slide class="slide bg-black-blue aligncenter" image=https://cg4.cgsociety.org/uploads/images/medium/seventeenth-call-it-a-day-1-cddf2cf8-dy41.jpg><span class=background style="background-image:url('https://cg4.cgsociety.org/uploads/images/medium/seventeenth-call-it-a-day-1-cddf2cf8-dy41.jpg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">Vlog</h1><p class="text-intro animated fadeInUp delay-500">The significance of music and travel</p><p><a href=https://wangdihong.gitee.io/video/ class="button ghost animated flipInX delay-1200" target=_blank>ReadMore</a></p></div></section><section slide class="slide bg-black-blue aligncenter" image=https://cg4.cgsociety.org/uploads/images/large/seventeenth-signal-enthusiast-1-95bc1133-j42j.jpg><span class=background style="background-image:url('https://cg4.cgsociety.org/uploads/images/large/seventeenth-signal-enthusiast-1-95bc1133-j42j.jpg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">Travel blog</h1><p class="text-intro animated fadeInUp delay-500">Keeping a positive and loving attitude towards life, I will record every trip I make.</p><p><a href=https://wangdihong.gitee.io/travel-blog-t class="button ghost animated flipInX delay-1200" target=_blank>ReadMore</a></p></div></section><section slide class=slide :class=size-80><div class="wrap size-80" wrap=true><div class="vertical-align grid"><div class=column><h3><strong>About Me</strong></h3><p>yeh, that`s it</p></div><div class=column><pre class=language-html><code class=language-html>    while(alive)
+    {
+        //if(time>7)
+        //{
+        //    awake()
+        //}
+        //    
+        //if(isawake)
+        //{   
+        //    eat()
+        //
+        //    coding()
+        //
+        //    Play(game,music,ride)
+        //
+        //    try()
+        //    {
+        //        recoding()
+        //    }
+        //}
+            sleep()
+    }
+
+
+</code></pre></div></div><hr></div></section><section slide class="slide bg-black-blue aligncenter" image=https://cg1.cgsociety.org/uploads/images/original/ycfcg-cui-long-long-ycf-st-1-13b1cb95-vrfv.jpeg><span class=background style="background-image:url('https://cg1.cgsociety.org/uploads/images/original/ycfcg-cui-long-long-ycf-st-1-13b1cb95-vrfv.jpeg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">--</h1></div></section><section slide class="slide bg-black-blue aligncenter" image=https://cg2.cgsociety.org/uploads/images/original/ycfcg-chen-tong-xue-3der-c-1-1d73a8a9-d417.jpeg><span class=background style="background-image:url('https://cg2.cgsociety.org/uploads/images/original/ycfcg-chen-tong-xue-3der-c-1-1d73a8a9-d417.jpeg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">--</h1></div></section><section slide class="slide bg-black-blue aligncenter" image=https://cg2.cgsociety.org/uploads/images/original/ycfcg-zhu-tong-xue-cg-stud-1-c402a4dd-f33f.jpeg><span class=background style="background-image:url('https://cg2.cgsociety.org/uploads/images/original/ycfcg-zhu-tong-xue-cg-stud-1-c402a4dd-f33f.jpeg')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">--</h1></div></section></article></div><script src=https://cdn.staticfile.org/echarts/4.8.0/echarts.min.js></script><script src=https://cdn.staticfile.org/mermaid/8.5.2/mermaid.min.js></script><script>mermaid.startOnLoad = false;</script><script src=https://echarts.cdn.apache.org/zh/asset/theme/infographic.js></script><script>window.pluginsOptions = {"echarts":{"theme":"infographic"},"mermaid":{"theme":"forest"}}
+
+
+
+    window.webslidesOptions = {}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    let isPrintMode = false;
+    if(~location.search.indexOf('print-pdf')){
+        isPrintMode = true;
+        WebSlides.registerPlugin('scroll', function(){});
+    }
+    const wsOptions = {
+        loop: false
+    };
+    if(window.webslidesOptions){
+        for (let i in webslidesOptions){
+            if(webslidesOptions.hasOwnProperty(i)){
+                wsOptions[i] = webslidesOptions[i];
+            }
+        }
+    }
+    const ws = new WebSlides(wsOptions)
+
+    window.wsInstance = ws;
+    if(isPrintMode){
+        ws.slides.forEach(s=>s.show())
+    }
+}, false)</script><script src=./js/chunk-vendors.js></script><script src=./js/index.js></script></body></html>
+
+
+<script language="javascript" type="text/javascript"> 
+    setTimeout("javascript:location.href='https://wangdihong.gitee.io/travel-blog-t'", 3000);   
+</script>

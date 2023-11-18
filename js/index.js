@@ -1,2 +1,71 @@
-/*! For license information please see index.js.LICENSE.txt */
-!function(e){function r(r){for(var n,i,l=r[0],f=r[1],p=r[2],a=0,s=[];a<l.length;a++)i=l[a],Object.prototype.hasOwnProperty.call(o,i)&&o[i]&&s.push(o[i][0]),o[i]=0;for(n in f)Object.prototype.hasOwnProperty.call(f,n)&&(e[n]=f[n]);for(c&&c(r);s.length;)s.shift()();return u.push.apply(u,p||[]),t()}function t(){for(var e,r=0;r<u.length;r++){for(var t=u[r],n=!0,l=1;l<t.length;l++){var f=t[l];0!==o[f]&&(n=!1)}n&&(u.splice(r--,1),e=i(i.s=t[0]))}return e}var n={},o={index:0},u=[];function i(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,i),t.l=!0,t.exports}i.m=e,i.c=n,i.d=function(e,r,t){i.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},i.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.t=function(e,r){if(1&r&&(e=i(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(i.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)i.d(t,n,function(r){return e[r]}.bind(null,n));return t},i.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return i.d(r,"a",r),r},i.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},i.p="./";var l=window.webpackJsonp=window.webpackJsonp||[],f=l.push.bind(l);l.push=r,l=l.slice();for(var p=0;p<l.length;p++)r(l[p]);var c=f;u.push([0,"chunk-vendors"]),t()}([function(e,r,t){e.exports=t("2cee")}]);
+(function () {
+    let config = JSON.parse(`{"resolution":{"designWidth":1335,"designHeight":750,"scaleMode":"fixedwidth","screenMode":"horizontal","alignV":"top","alignH":"left","backgroundColor":"#888888"},"3D":{"lightClusterCount":{"x":12,"y":12,"z":12},"enableStaticBatch":true,"enableDynamicBatch":true,"defaultPhysicsMemory":16,"enableUniformBufferObject":true,"pixelRatio":1,"enableMultiLight":true,"maxLightCount":16,"maxMorphTargetCount":32,"useBVHCull":false,"BVH_max_SpatialCount":7,"BVH_limit_size":32,"BVH_Min_Build_nums":10},"physics2D":{"gravity":{"y":500,"x":0},"allowSleeping":false,"velocityIterations":8,"positionIterations":3,"pixelRatio":50,"debugDraw":false,"drawShape":true,"drawJoint":true,"drawAABB":false,"drawCenterOfMass":false},"2D":{"FPS":60,"isAntialias":true,"useRetinalCanvas":false,"isAlpha":false,"webGL2D_MeshAllocMaxMem":true,"defaultFont":"SimSun","defaultFontSize":20},"physics3dModule":"laya.bullet","physics2dModule":"laya.box2D","spineVersion":"3.8","splash":{"enabled":true,"fit":"center","duration":1},"stat":true,"vConsole":false,"alertGlobalError":false,"pkgs":[],"startupScene":"scene/Game.ls"}`);
+
+    Object.assign(Laya.Config, config["2D"]);
+
+    let config3D = config["3D"];
+    Object.assign(Laya.Config3D, config3D);
+
+    let v3 = config3D.lightClusterCount;
+    Laya.Config3D.lightClusterCount = new Laya.Vector3(v3.x, v3.y, v3.z);
+
+    if (Laya.Physics2D)
+        Object.assign(Laya.Physics2DOption, config.physics2D);
+
+    Laya.LayaGL.renderOBJCreate = new Laya.RenderOBJCreateUtil();
+    Laya.init(config.resolution).then(() => {
+        if ((Laya.Browser.onMobile || Laya.Browser.onIPad) && config.vConsole) {
+            let script = document.createElement("script");
+            script.src = "js/vConsole.min.js";
+            script.onload = () => {
+                window.vConsole = new VConsole();
+            };
+            document.body.appendChild(script);
+        }
+
+        if (config.alertGlobalError)
+            Laya.alertGlobalError(true);
+        if (config.debug || Laya.Browser.getQueryString("debug") == "true")
+            Laya.enableDebugPanel();
+        if (config.stat)
+            Laya.Stat.show();
+
+        if (config.useSafeFileExtensions)
+            Laya.URL.initMiniGameExtensionOverrides();
+
+        if (Laya.ClassUtils.getClass("SpineSkeleton"))
+            Laya.SpineTemplet.RuntimeVersion = config.spineVersion || "3.8";
+
+        if (config.workerLoaderLib)
+            Laya.WorkerLoader.workerPath = config.workerLoaderLib;
+
+        let progressCallback = new Laya.BatchProgress((progress) => {
+            if (window && window.onSplashProgress)
+                window.onSplashProgress(progress);
+        });
+        let loadSceneProgress = config.startupScene ? progressCallback.createCallback(0.5) : null;
+
+        let promises = [Laya.loader.loadPackage("", null, progressCallback.createCallback())];
+        if (config.pkgs) {
+            for (let pkg of config.pkgs) {
+                let manifestPath = (pkg.path.length > 0 ? (pkg.path + "/") : pkg.path) + "fileconfig.json";
+                if (pkg.hash)
+                    Laya.URL.version[manifestPath] = pkg.hash;
+                if (pkg.path.length > 0 && pkg.autoLoad)
+                    promises.push(Laya.loader.loadPackage(pkg.path, pkg.remoteUrl, progressCallback.createCallback()));
+            }
+        }
+        Promise.all(promises).then(() => {
+            if (config.startupScene) {
+                Laya.Scene.open(config.startupScene, true, null, null, Laya.Handler.create(null, loadSceneProgress, null, false)).then(() => {
+                    if (window && window.hideSplashScreen)
+                        window.hideSplashScreen();
+                });
+            }
+            else {
+                if (window && window.hideSplashScreen)
+                    window.hideSplashScreen();
+            }
+        });
+    });
+})();
